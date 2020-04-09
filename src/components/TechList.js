@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export class TechList extends Component {
-  state = { newTech: '', teches: ['Node.js', 'ReactJs', 'React Naive'] };
+  state = { newTech: '', techs: ['Node.js', 'ReactJs', 'React Naive'] };
 
   handleInputChange = (e) => {
     this.setState({ newTech: e.target.value });
@@ -10,16 +10,25 @@ export class TechList extends Component {
     e.preventDefault();
 
     this.setState({
-      teches: [...this.state.teches, this.state.newTech],
+      techs: [...this.state.teches, this.state.newTech],
       newTech: '',
     });
+  };
+
+  handleDelete = (tech) => {
+    this.setState({ techs: this.state.techs.filter((t) => t !== tech) });
   };
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <ul>
-          {this.state.teches.map((tech) => (
-            <li key={tech}>{tech}</li>
+          {this.state.techs.map((tech) => (
+            <li key={tech}>
+              {tech}
+              <button onClick={() => this.handleDelete(tech)} type="button">
+                Remover
+              </button>
+            </li>
           ))}
         </ul>
         <input
