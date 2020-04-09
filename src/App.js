@@ -1,14 +1,10 @@
 import React from 'react';
 import './App.css';
 
-import fem from './assets/fem.jpg';
+import TechList from './components/TechList';
 
 function App() {
-  return (
-    <div>
-      <img src={fem} alt="f\&m" />
-    </div>
-  );
+  return <TechList />;
 }
 
 export default App;
