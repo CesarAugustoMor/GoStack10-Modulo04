@@ -5,8 +5,24 @@ import TechItem from './TechItem';
 export class TechList extends Component {
   state = {
     newTech: '',
-    techs: ['Node.js', 'ReactJs', 'React Naive'],
+    techs: [],
   };
+
+  componentDidMount() {
+    /*
+    const techs = localStorage.getItem('techs');
+
+    if (techs) {
+      this.setState({ techs: JSON.parse(techs) });
+    }*/
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.techs !== this.state.techs) {
+      console.log(prevState);
+      localStorage.setItem('techs', JSON.stringify(this.state.techs));
+    }
+  }
 
   handleInputChange = (e) => {
     this.setState({ newTech: e.target.value });
@@ -15,7 +31,7 @@ export class TechList extends Component {
     e.preventDefault();
 
     this.setState({
-      techs: [...this.state.teches, this.state.newTech],
+      techs: [...this.state.techs, this.state.newTech],
       newTech: '',
     });
   };
